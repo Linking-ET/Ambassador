@@ -11,6 +11,9 @@ import java.util.zip.Adler32;
 import java.util.zip.Checksum;
 
 public class ForgeHandshake {
+    private static final org.slf4j.Logger log =
+            org.slf4j.LoggerFactory.getLogger(ForgeHandshake.class);
+    private volatile boolean channelsLogged = false;
     private ModListReplyPacket modListReplyPacket;
     private final Map<String, Long> registries = new HashMap<>();
     public GenericForgeLoginWrapperPacket<Context.ClientContext> zetaFlagsPacket;
@@ -30,6 +33,12 @@ public class ForgeHandshake {
         Checksum registryChecksum = new Adler32();
         registryChecksum.update(packet.getSnapshot());
         registries.put(packet.getRegistryName(), registryChecksum.getValue());
+        // --------- debug 打印 ---------
+        if (!channelsLogged &&
+                Boolean.getBoolean("ambassador.debug")) {    // -Dambassador.debug=true
+            channelsLogged = true;
+            log.info("[ambassador-debug] connection channels: {}", registries.keySet());
+        }
     }
 
     public Map<String, Long> getRegistries() {
