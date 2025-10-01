@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    compileOnly("it.unimi.dsi:fastutil:8.5.16")
     compileOnly("com.velocitypowered:velocity-api")
     compileOnly("com.velocitypowered:velocity-proxy")
     annotationProcessor("com.velocitypowered:velocity-api")
