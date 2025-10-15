@@ -136,8 +136,8 @@ public class Ambassador {
 
     Method argumentRegistry = ArgumentPropertyRegistry.class.getDeclaredMethod("register", ArgumentIdentifier.class, Class.class, ArgumentPropertySerializer.class);
     argumentRegistry.setAccessible(true);
-    argumentRegistry.invoke(null,ArgumentIdentifier.id("forge:enum", mapSet(MINECRAFT_1_19, 50)), EnumArgumentProperty.class, EnumArgumentPropertySerializer.ENUM);
-    argumentRegistry.invoke(null,ArgumentIdentifier.id("forge:modid", mapSet(MINECRAFT_1_19, 51)), ModIdArgumentProperty.class,
+    argumentRegistry.invoke(null,ArgumentIdentifier.id("forge:enum", mapSet(MINECRAFT_1_19, -50)), EnumArgumentProperty.class, EnumArgumentPropertySerializer.ENUM);
+    argumentRegistry.invoke(null,ArgumentIdentifier.id("forge:modid", mapSet(MINECRAFT_1_19, -51)), ModIdArgumentProperty.class,
             new ArgumentPropertySerializer<>() {
               @Override
               public ModIdArgumentProperty deserialize(ByteBuf buf, ProtocolVersion protocolVersion) {
